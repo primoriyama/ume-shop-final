@@ -1,0 +1,19 @@
+<a [routerLink]="['/produto', produto.id]" class="text-decoration-none text-dark">
+  <div class="card h-100 shadow-sm">
+    <img [src]="produto.thumbnail" class="card-img-top" [alt]="produto.title" style="height: 200px; object-fit: cover;">
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{ produto.title }}</h5>
+      <p class="card-text small text-muted">{{ produto.description | resumirTexto:70 }}</p>
+
+      <div class="mt-auto">
+      <span class="text-muted text-decoration-line-through me-2">
+        {{ produto.price | currency:'BRL' }}
+      </span>
+      <span class="text-success fs-5 fw-bold">
+        {{ produto.price | precoComDesconto:produto.discountPercentage | currency:'BRL' }}
+      </span>
+    </div>
+    
+    </div>
+  </div>
+</a>

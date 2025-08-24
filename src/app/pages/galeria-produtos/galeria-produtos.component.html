@@ -1,0 +1,64 @@
+<div class="container my-4">
+  <h1 class="mb-4 text-center">🌸 Vitrine Ume-Shop 🌸</h1>
+
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <div class=input-group>
+        <span class="input-group-text">🔍</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar produto pelo título..."
+          [formControl]="campoBusca"
+        >
+      </div>
+    </div>
+  </div>
+
+  @if (carregando) {
+    <div class="d-flex justify-content-center mt-5">
+      <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="ms-3 fs-4">Buscando produtos...</p>
+    </div>
+  } @else {
+
+    @if (listaPaginada.length > 0) {
+      <div class="row">
+        @for (produto of listaPaginada; track produto.id) {
+          <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <app-card-produto [produto]="produto"></app-card-produto>
+          </div>
+        }
+      </div>
+
+      <nav class="d-flex justify-content-center mt-4">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="paginaAtual === 1">
+      <a class="page-link" href="#" (click)="paginaAnterior()">Anterior</a>
+    </li>
+
+    @for (pagina of paginasDisponiveis; track $index) {
+      @if (pagina === '...') {
+        <li class="page-item disabled"><span class="page-link">...</span></li>
+      } @else {
+        <li class="page-item" [class.active]="pagina === paginaAtual">
+          <a class="page-link" href="#" (click)="irParaPagina(+pagina)">{{ pagina }}</a>
+        </li>
+      }
+    }
+
+    <li class="page-item" [class.disabled]="paginaAtual === totalPaginas">
+      <a class="page-link" href="#" (click)="proximaPagina()">Próxima</a>
+    </li>
+  </ul>
+</nav>
+
+    } @else {
+      <div class="alert alert-info mt-4 text-center">
+        <p class="mb-0">Nenhum produto foi encontrado.</p>
+      </div>
+    }
+  }
+</div>

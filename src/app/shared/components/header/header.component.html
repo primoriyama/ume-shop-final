@@ -1,0 +1,34 @@
+<nav id="navbar-principal" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/" (click)="onSelecionarCategoria('all')">🌸 Ume-Shop</a>
+
+    <div class="dropdown me-auto">
+      <button class="btn btn-outline-light text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Categorias
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" routerLink="/" (click)="onSelecionarCategoria('all')">Todas as Categorias</a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        @for (categoria of categorias; track categoria.slug) {
+          <li>
+            <a class="dropdown-item" routerLink="/" (click)="onSelecionarCategoria(categoria.slug)">
+              {{ (categoria.slug | traduzir) | titlecase }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="d-flex">
+      <a routerLink="/carrinho" class="btn btn-outline-light text-light">
+        <i class="bi-cart-fill me-1"></i>
+        Carrinho
+        <span class="badge bg-light text-dark ms-1 rounded-pill">
+          {{ quantidadeItens$ | async }}
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>

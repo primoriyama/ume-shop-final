@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+@use "bootstrap/scss/functions";
+
+$custom-theme-colors: (
+  "primary": #D95B8A,
+  "info": #F9E6EC
+);
+
+@use "bootstrap/scss/bootstrap" with (
+  $theme-colors: $custom-theme-colors
+);
+
+#navbar-principal .btn-outline-light {
+  color: #fff !important;
+}
+
+#navbar-principal .btn-outline-light:hover,
+#navbar-principal .btn-outline-light:focus,
+#navbar-principal .btn.show,
+#navbar-principal .btn-outline-light:active {
+  color: #212529 !important;
+  background-color: #f8f9fa !important;
+  border-color: #f8f9fa !important; 
+}
+
+.page-item:not(.active) .page-link {
+  background-color: #fff;
+  color: #212529;
+}
+
+
+.page-item:not(.active) .page-link {
+  border-color: #dee2e6;
+}
+
+.page-item.active .page-link {
+    background-color: #212529;
+    border-color: #212529;
+    color: #fff;
+}
+
+.alert-info {
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+@import "bootstrap-icons/font/bootstrap-icons.css";

@@ -1,0 +1,58 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2>Finalizar Compra</h2>
+      <p>Por favor, preencha seus dados para concluir o pedido.</p>
+
+      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3">
+          <label for="nomeCompleto" class="form-label">Nome Completo</label>
+          <input type="text" id="nomeCompleto" class="form-control" formControlName="nomeCompleto">
+          @if (nomeCompleto?.invalid && (nomeCompleto?.dirty || nomeCompleto?.touched)) {
+            <div class="text-danger mt-1">
+              @if (nomeCompleto?.errors?.['required']) {
+                <small>O nome completo é obrigatório.</small>
+              }
+              @if (nomeCompleto?.errors?.['minlength']) {
+                <small>O nome deve ter no mínimo 3 caracteres.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" id="email" class="form-control" formControlName="email">
+          @if (email?.invalid && (email?.dirty || email?.touched)) {
+            <div class="text-danger mt-1">
+              @if (email?.errors?.['required']) {
+                <small>O e-mail é obrigatório.</small>
+              }
+              @if (email?.errors?.['email']) {
+                <small>Por favor, insira um e-mail válido.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="endereco" class="form-label">Endereço de Entrega</label>
+          <input type="text" id="endereco" class="form-control" formControlName="endereco">
+          @if (endereco?.invalid && (endereco?.dirty || endereco?.touched)) {
+            <div class="text-danger mt-1">
+              @if (endereco?.errors?.['required']) {
+                <small>O endereço é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="checkoutForm.invalid">
+          Finalizar Compra
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
