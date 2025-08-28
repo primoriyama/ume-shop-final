@@ -19,7 +19,7 @@ $custom-theme-colors: (
 #navbar-principal .btn-outline-light:active {
   color: #212529 !important;
   background-color: #f8f9fa !important;
-  border-color: #f8f9fa !important; 
+  border-color: #f8f9fa !important;
 }
 
 .page-item:not(.active) .page-link {
@@ -41,6 +41,20 @@ $custom-theme-colors: (
 .alert-info {
   background-color: #fff;
   border-color: #dee2e6;
+}
+
+html, body {
+  height: 100%;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 @import "bootstrap-icons/font/bootstrap-icons.css";
